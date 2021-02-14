@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:manager_san/parts/calender_02.dart';
 import 'package:manager_san/player/page_player.dart';
 
 import 'album/page_album.dart';
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _pages = [
-      News(),
+      NewsPage(),
       Coach(),
       Player(),
       Album(),
