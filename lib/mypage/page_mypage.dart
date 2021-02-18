@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Mypage extends StatelessWidget {
+class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +25,7 @@ class Mypage extends StatelessWidget {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: ('住所'),
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: ('性別'),
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: ('名前'),
-              ),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                hintText: ('名前'),
+                hintText: ('身長'),
               ),
             ),
           ],

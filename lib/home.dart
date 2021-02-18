@@ -22,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _pages = [
       NewsPage(),
-      Coach(),
-      Player(),
+      Coaches(),
+      Players(),
       Album(),
-      Mypage(),
+      MyPage(),
     ];
     super.initState();
   }
