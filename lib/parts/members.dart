@@ -3,12 +3,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:manager_san/player/screen_player.dart';
 
 
-class Tile extends StatelessWidget {
+class Member extends StatelessWidget {
   IconData icon;
   String username;
   String message;
 
-  Tile({IconData icon, String username, String message}) {
+  Member({IconData icon, String username, String message}) {
     this.icon = icon;
     this.username = username;
     this.message = message;
@@ -23,11 +23,11 @@ class Tile extends StatelessWidget {
         color: Colors.white,
         child: ListTile(
           leading: CircleAvatar(
-            child: Icon(this.icon), // <- 追加：アイコンの設定
+            child: Icon(this.icon),
             backgroundColor: Colors.pink,
           ),
-          title: Text(this.username), // <- 追加：ユーザ名の設定
-          subtitle: Text(this.message), // <- 追加：メッセージの設定
+          title: Text(this.username),
+          subtitle: Text(this.message),
           onTap: () => {
             Navigator.push(
                 context,

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyPage extends StatelessWidget {
@@ -27,6 +29,16 @@ class MyPage extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: ('身長'),
               ),
+            ),
+            RaisedButton(
+              child: Text('作成'),
+              onPressed: () async {
+                // ドキュメント作成
+                await FirebaseFirestore.instance
+                    .collection('players')
+                    .document('id_abc')
+                    .setData({'name': '鈴木', 'height': 140});
+              },
             ),
           ],
         ),
