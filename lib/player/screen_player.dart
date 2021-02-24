@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 
 class Player extends StatelessWidget {
-  // == 追加　===============
   String username;
 
   Player({String username}) {
     this.username = username;
   }
-  // =======================
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          this.username ?? '', // <- 追加！
+          this.username ?? '',
         ),
-        // == ヘッダーを追加　===============
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () => {},
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: IconButton(
@@ -39,17 +29,12 @@ class Player extends StatelessWidget {
                 onPressed: () => {},
               )),
         ],
-        // ===============================
       ),
       body: Center(child: Text("Chat")),
       backgroundColor: Colors.cyan,
       bottomNavigationBar: BottomAppBar(
         child: Row(
           children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () => {},
-            ),
             IconButton(
               icon: Icon(Icons.camera_alt),
               onPressed: () => {},
@@ -65,10 +50,6 @@ class Player extends StatelessWidget {
                   labelText: 'Aa',
                 ),
               ),
-            ),
-            IconButton(
-              icon: Icon(Icons.mic),
-              onPressed: () => {},
             ),
           ],
         ),

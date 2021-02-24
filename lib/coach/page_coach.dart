@@ -23,37 +23,42 @@ class Coaches extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('coaches').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError)
-            return new Text('Error: ${snapshot.error}');
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting: return Text('Loading...');
-            default:
-              List<DocumentSnapshot> coaches = snapshot.data.docs;
-              return ListView.builder(
-                padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-                itemCount: coaches.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    child: Container(
-                      color: Colors.white,
-                      child: ListTile(
-                        leading: Icon(Icons.account_box),
-                        title: Text(coaches[index]["name"]), // <- 追加：ユーザ名の設定
-                        subtitle: Text(coaches[index]["company"]), // <- 追加：メッセージの設定
-                        onTap: () => {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Coach(
-                                    name: this.name,
-                                  )))
-                        },
-                      ),
-                    ),
-                  );
-                },
-              );
+          if (snapshot.hasError) {
+            return Text('Error');
           }
+          if (!snapshot.hasData) {
+            return Text("loading");
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text('Loading...');
+          }
+          // List<DocumentSnapshot> coaches = snapshot.data.docs;
+          return ListView.builder(
+            padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+            itemCount: snapshot.data.docs.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                child: Container(
+                  color: Colors.white,
+                  child: ListTile(
+                    leading: Icon(Icons.account_box),
+                    title: Text(snapshot.data.docs[index]["name"]),
+                    subtitle: Text(snapshot.data.docs[index]["name"]),
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Coach(
+                            name: this.name,
+                          )
+                        )
+                      )
+                    },
+                  ),
+                ),
+              );
+            },
+          );
         },
       ),
     );

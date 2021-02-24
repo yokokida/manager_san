@@ -9,13 +9,15 @@ class Album extends StatelessWidget {
       appBar: AppBar(
         title: Text("アルバム"),
       ),
-      body: Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-          ],
-        ),
+      body: Container(
+        
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: addImage(),
       ),
     );
   }
+
+  addImage() {}
 }

@@ -122,8 +122,8 @@ class _NewsPageState extends State<NewsPage> {
 
   _showAddDialog() async {
     await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
+      context: context,
+      builder: (context) => AlertDialog(
           title: Text("予定追加"),
           content: TextField(
             controller: _eventController,
@@ -148,6 +148,7 @@ class _NewsPageState extends State<NewsPage> {
               },
             )
           ],
-        ));
+        )
+    );
   }
 }

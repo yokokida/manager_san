@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 
 class Coach extends StatelessWidget {
 
-  IconData icon;
   String name;
   String company;
 
-  Coach({IconData icon, String name, String company}) {
-    this.icon = icon;
+  Coach({String name, String company}) {
     this.name = name;
     this.company = company;
   }

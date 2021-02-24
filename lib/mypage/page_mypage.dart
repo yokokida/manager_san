@@ -3,6 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class MyPage extends StatelessWidget {
+  final String profName = "name";
+  final String profCompany = "company";
+  final String profDatetime = "datetime";
+
+  TextEditingController _newNameCont = TextEditingController();
+  TextEditingController _newCompanyCont = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,27 +28,37 @@ class MyPage extends StatelessWidget {
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: ('生年月日'),
+                hintText: ('名前'),
               ),
+              controller: _newNameCont,
             ),
             TextField(
               decoration: InputDecoration(
-                hintText: ('身長'),
+                hintText: ('会社'),
               ),
+              controller: _newCompanyCont,
             ),
             RaisedButton(
               child: Text('作成'),
-              onPressed: () async {
-                // ドキュメント作成
-                await FirebaseFirestore.instance
-                    .collection('players')
-                    .document('id_abc')
-                    .setData({'name': '鈴木', 'height': 140});
+              onPressed: () {
+                if (_newNameCont.text.isNotEmpty && _newCompanyCont.text.isNotEmpty) {
+                  createProf(_newNameCont.text, _newCompanyCont.text);
+                }
+                _newNameCont.clear();
+                _newCompanyCont.clear();
+                print('kara');
               },
             ),
           ],
         ),
       ),
     );
+  }
+
+  void createProf(String name, String company) {
+    FirebaseFirestore.instance.collection('coaches').add({
+      profName: name,
+      profCompany: company,
+    });
   }
 }
