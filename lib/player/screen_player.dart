@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Player extends StatelessWidget {
-  String username;
 
-  Player({String username}) {
-    this.username = username;
+  String name;
+  String school;
+
+  Player({String name, String school}) {
+    this.name = name;
+    this.school = school;
   }
 
   @override
@@ -12,7 +15,7 @@ class Player extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          this.username ?? '',
+          this.name ?? '',
         ),
         actions: [
           Padding(

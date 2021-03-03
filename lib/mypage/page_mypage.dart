@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 class MyPage extends StatelessWidget {
   final String profName = "name";
   final String profCompany = "company";
+  final String profSchool = "school";
   final String profDatetime = "datetime";
 
   TextEditingController _newNameCont = TextEditingController();
   TextEditingController _newCompanyCont = TextEditingController();
+  TextEditingController _newSchoolCont = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +40,32 @@ class MyPage extends StatelessWidget {
               ),
               controller: _newCompanyCont,
             ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: ('学校'),
+              ),
+              controller: _newSchoolCont,
+            ),
             RaisedButton(
-              child: Text('作成'),
+              child: Text('監督作成'),
               onPressed: () {
                 if (_newNameCont.text.isNotEmpty && _newCompanyCont.text.isNotEmpty) {
-                  createProf(_newNameCont.text, _newCompanyCont.text);
+                  createCoach(_newNameCont.text, _newCompanyCont.text);
                 }
                 _newNameCont.clear();
                 _newCompanyCont.clear();
-                print('kara');
+                print('coach');
+              },
+            ),
+            RaisedButton(
+              child: Text('選手作成'),
+              onPressed: () {
+                if (_newNameCont.text.isNotEmpty && _newSchoolCont.text.isNotEmpty) {
+                  createPlayer(_newNameCont.text, _newSchoolCont.text);
+                }
+                _newNameCont.clear();
+                _newSchoolCont.clear();
+                print('player');
               },
             ),
           ],
@@ -55,10 +74,16 @@ class MyPage extends StatelessWidget {
     );
   }
 
-  void createProf(String name, String company) {
+  void createCoach(String name, String company) {
     FirebaseFirestore.instance.collection('coaches').add({
       profName: name,
       profCompany: company,
+    });
+  }
+  void createPlayer(String name, String school) {
+    FirebaseFirestore.instance.collection('players').add({
+      profName: name,
+      profSchool: school,
     });
   }
 }
