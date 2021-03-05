@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:manager_san/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.lightBlue,
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }

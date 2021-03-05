@@ -33,7 +33,7 @@ class Member extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => Player(
-                      username: this.username,
+                      // username: this.username,
                     )))
           },
         ),

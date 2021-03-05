@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:manager_san/login.dart';
 
 class MyPage extends StatelessWidget {
   final String profName = "name";
@@ -11,6 +13,8 @@ class MyPage extends StatelessWidget {
   TextEditingController _newNameCont = TextEditingController();
   TextEditingController _newCompanyCont = TextEditingController();
   TextEditingController _newSchoolCont = TextEditingController();
+
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +70,14 @@ class MyPage extends StatelessWidget {
                 _newNameCont.clear();
                 _newSchoolCont.clear();
                 print('player');
+              },
+            ),
+
+          FlatButton(
+            child: Text('Logout'),
+            onPressed: (){
+                auth.signOut();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
               },
             ),
           ],

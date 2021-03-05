@@ -142,6 +142,7 @@ class _NewsPageState extends State<NewsPage> {
                       _eventController.text
                     ];
                   }
+                  // prefs.setString("events", json.encode(encodeMap(_events)));
                   _eventController.clear();
                   Navigator.pop(context);
                 });
@@ -151,4 +152,5 @@ class _NewsPageState extends State<NewsPage> {
         )
     );
   }
+
 }
