@@ -73,11 +73,13 @@ class MyPage extends StatelessWidget {
               },
             ),
 
-          FlatButton(
-            child: Text('Logout'),
-            onPressed: (){
+            RaisedButton(
+              child: Text('Logout'),
+              onPressed: (){
                 auth.signOut();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginScreen())
+                );
               },
             ),
           ],

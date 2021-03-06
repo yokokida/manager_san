@@ -51,26 +51,47 @@ class _LoginScreenState extends State<LoginScreen> {
                 RaisedButton(
                     color: Theme.of(context).accentColor,
                     child: Text('LogIn'),
-                    onPressed: (){
-                      auth.signInWithEmailAndPassword(email: _email, password: _password).then((_){
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) => HomeScreen())
-                        );
-                      });
-                    }),
+                    onPressed: () => logIn(),
+                ),
                 RaisedButton(
                   color: Theme.of(context).accentColor,
                   child: Text('SignUp'),
-                  onPressed: (){
-                    auth.createUserWithEmailAndPassword(email: _email, password: _password).then((_){
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => HomeScreen())
-                      );
-                    });
-                  },
+                  onPressed: () => signIn(),
                 )
-              ])
-        ],),
+              ]
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children:[
+                RaisedButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text('LogIn'),
+                  onPressed: () => logIn(),
+                ),
+                RaisedButton(
+                  color: Theme.of(context).accentColor,
+                  child: Text('SignUp'),
+                  onPressed: () => signIn(),
+                )
+              ]
+          )
+        ],
+      ),
     );
+  }
+
+  void logIn() {
+    auth.signInWithEmailAndPassword(email: _email, password: _password).then((_){
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen())
+      );
+    });
+  }
+  void signIn() {
+    auth.createUserWithEmailAndPassword(email: _email, password: _password).then((_){
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomeScreen())
+      );
+    });
   }
 }
