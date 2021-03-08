@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:manager_san/auth/signin_coach.dart';
+import 'package:manager_san/auth/signin_player.dart';
 import 'package:manager_san/home.dart';
 
 
@@ -45,34 +47,30 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
           ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children:[
-                RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text('LogIn'),
-                    onPressed: () => logIn(),
-                ),
-                RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text('SignUp'),
-                  onPressed: () => signIn(),
-                )
-              ]
-          ),
-          Row(
+
+          Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children:[
                 RaisedButton(
                   color: Theme.of(context).accentColor,
-                  child: Text('LogIn'),
+                  child: Text('ログイン'),
                   onPressed: () => logIn(),
                 ),
-                RaisedButton(
-                  color: Theme.of(context).accentColor,
-                  child: Text('SignUp'),
-                  onPressed: () => signIn(),
-                )
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children:[
+                      RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        child: Text('監督・コーチ登録'),
+                        onPressed: () => coachScreenPage(),
+                      ),
+                      RaisedButton(
+                        color: Theme.of(context).accentColor,
+                        child: Text('選手・保護者登録'),
+                        onPressed: () => playerScreenPage(),
+                      )
+                    ]
+                ),
               ]
           )
         ],
@@ -93,5 +91,23 @@ class _LoginScreenState extends State<LoginScreen> {
           MaterialPageRoute(builder: (context) => HomeScreen())
       );
     });
+  }
+
+  void coachScreenPage() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CoachSigninScreen(),
+        )
+    );
+  }
+
+  void playerScreenPage() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlayerSigninScreen(),
+        )
+    );
   }
 }
