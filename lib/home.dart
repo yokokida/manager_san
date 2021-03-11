@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manager_san/news/calender_02.dart';
+import 'package:manager_san/news/page_calender_01.dart';
+import 'package:manager_san/news/page_calender_02.dart';
 import 'package:manager_san/player/page_player.dart';
 
 import 'album/page_album.dart';
 import 'coach/page_coach.dart';
 import 'mypage/page_mypage.dart';
-import 'news/page_news.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _pages = [
-      NewsPage(),
+      Calender01Page(),
       Coaches(),
       Players(),
       Album(),

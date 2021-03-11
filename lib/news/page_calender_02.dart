@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
-class NewsPage extends StatefulWidget {
+class Calender02Page extends StatefulWidget {
   @override
-  _NewsPageState createState() => _NewsPageState();
+  _Calender02PageState createState() => _Calender02PageState();
 }
 
-class _NewsPageState extends State<NewsPage> {
+class _Calender02PageState extends State<Calender02Page> {
   CalendarController _controller;
   Map<DateTime, List<dynamic>> _events;
   List<dynamic> _selectedEvents;
   TextEditingController _eventController;
+  CalendarController _calendarController = CalendarController();
 
   @override
   void initState() {
@@ -32,7 +33,8 @@ class _NewsPageState extends State<NewsPage> {
   };
 
 
-  @override
+
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -40,9 +42,11 @@ class _NewsPageState extends State<NewsPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TableCalendar(
+              events: _events,
+              availableGestures: AvailableGestures.all,
               holidays: _holidays,
               initialCalendarFormat: CalendarFormat.month,
               calendarStyle: CalendarStyle(

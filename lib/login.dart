@@ -47,7 +47,6 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
           ),
-
           Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children:[
@@ -96,18 +95,14 @@ class _LoginScreenState extends State<LoginScreen> {
   void coachScreenPage() {
     Navigator.push(
         context,
-        MaterialPageRoute(
-            builder: (context) => CoachSigninScreen(),
-        )
+        MaterialPageRoute(builder: (context) => CoachSigninScreen())
     );
   }
 
   void playerScreenPage() {
     Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => PlayerSigninScreen(),
-        )
+        MaterialPageRoute(builder: (context) => PlayerSigninScreen())
     );
   }
 }
