@@ -108,9 +108,7 @@ class _Calender02PageState extends State<Calender02Page> {
                     border: Border.all(color: Colors.grey)
                 ),
                 child: Center(
-                    child: Text(event,
-                      style: TextStyle(color: Colors.blue,
-                          fontWeight: FontWeight.bold,fontSize: 16),)
+                    child: Text(event, style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold,fontSize: 16))
                 ),
               ),
             )),

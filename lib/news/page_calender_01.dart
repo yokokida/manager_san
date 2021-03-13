@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manager_san/news/screen_news.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
@@ -42,37 +43,57 @@ class _Calender01PageState extends State<Calender01Page> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TableCalendar(
               calendarController: _calendarController,
-              events: _events,
               holidays: _holidays,
-              startingDayOfWeek: StartingDayOfWeek.monday,
-              calendarStyle: CalendarStyle(
-                selectedColor: Colors.deepOrange[400],
-                todayColor: Colors.deepOrange[200],
-                markersColor: Colors.brown[700],
-                outsideDaysVisible: false,
-              ),
+              startingDayOfWeek: StartingDayOfWeek.sunday,
+              initialCalendarFormat: CalendarFormat.month,
+              formatAnimation: FormatAnimation.scale,
+
+              events: _events,
+
               headerStyle: HeaderStyle(
-                formatButtonTextStyle:
-                TextStyle().copyWith(color: Colors.white, fontSize: 15.0),
-                formatButtonDecoration: BoxDecoration(
-                  color: Colors.deepOrange[400],
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
+                centerHeaderTitle: true,
+                formatButtonVisible: false,
+                // formatButtonTextStyle: TextStyle().copyWith(color: Colors.white, fontSize: 15.0),
+                // formatButtonDecoration: BoxDecoration(
+                //   color: Colors.lightBlueAccent,
+                //   borderRadius: BorderRadius.circular(0),
+                // ),
               ),
-              // onDaySelected: _onDaySelected,
-              // onVisibleDaysChanged: _onVisibleDaysChanged,
-              // onCalendarCreated: _onCalendarCreated,
+
+              calendarStyle: CalendarStyle(
+                todayColor: Colors.deepOrangeAccent,
+                selectedColor: Colors.lightBlueAccent,
+                markersColor: Colors.lightBlueAccent,
+                outsideDaysVisible: true,
+                weekendStyle: TextStyle().copyWith(color: Colors.deepOrange),
+                holidayStyle: TextStyle().copyWith(color: Colors.deepOrange),
+              ),
+              onDaySelected: _onDaySelected,
+              onVisibleDaysChanged: _onVisibleDaysChanged,
+              onCalendarCreated: _onCalendarCreated,
             ),
+
+            ..._selectedEvents.map((event) => ListTile(
+              title: Text(event.title),
+              // onTap: () {
+              //   Navigator.push(
+              //       context,
+              //       MaterialPageRoute(builder: (_) => EventDetailsPage(event: event)
+              //       )
+              //   );
+              // },
+            )),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: _showAddDialog,
+        onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => AddEventPage())
+        ),
       ),
     );
   }
@@ -110,4 +131,19 @@ class _Calender01PageState extends State<Calender01Page> {
     );
   }
 
+
+  void _onDaySelected(DateTime day, List events, List holidays) {
+    print('CALLBACK: _onDaySelected');
+    setState(() {
+      _selectedEvents = events;
+    });
+  }
+
+  void _onVisibleDaysChanged(DateTime first, DateTime last, CalendarFormat format) {
+    print('CALLBACK: _onVisibleDaysChanged');
+  }
+
+  void _onCalendarCreated(DateTime first, DateTime last, CalendarFormat format) {
+    print('CALLBACK: _onCalendarCreated');
+  }
 }
