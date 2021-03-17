@@ -13,6 +13,7 @@ class _Calender01PageState extends State<Calender01Page> {
   Map<DateTime, List<dynamic>> _events;
   List<dynamic> _selectedEvents;
   TextEditingController _eventController;
+  TextEditingController _descriptionController;
   CalendarController _calendarController = CalendarController();
 
   @override
@@ -20,6 +21,7 @@ class _Calender01PageState extends State<Calender01Page> {
     super.initState();
     _controller = CalendarController();
     _eventController = TextEditingController();
+    _descriptionController = TextEditingController();
     _events = {};
     _selectedEvents = [];
   }
@@ -27,10 +29,6 @@ class _Calender01PageState extends State<Calender01Page> {
 
   final Map<DateTime, List> _holidays = {
     DateTime(2021, 1, 1): ['謹賀新年'],
-    DateTime(2021, 1, 6): ['Epiphany'],
-    DateTime(2021, 2, 16): ['Valentine\'s Day'],
-    DateTime(2021, 4, 21): ['Easter Sunday'],
-    DateTime(2021, 4, 22): ['Easter Monday'],
   };
 
 
@@ -56,11 +54,6 @@ class _Calender01PageState extends State<Calender01Page> {
               headerStyle: HeaderStyle(
                 centerHeaderTitle: true,
                 formatButtonVisible: false,
-                // formatButtonTextStyle: TextStyle().copyWith(color: Colors.white, fontSize: 15.0),
-                // formatButtonDecoration: BoxDecoration(
-                //   color: Colors.lightBlueAccent,
-                //   borderRadius: BorderRadius.circular(0),
-                // ),
               ),
 
               calendarStyle: CalendarStyle(
@@ -91,9 +84,10 @@ class _Calender01PageState extends State<Calender01Page> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => AddEventPage())
-        ),
+        // onPressed: () => Navigator.of(context).push(
+        //     MaterialPageRoute(builder: (context) => AddEventPage())
+        // ),
+        onPressed: _showAddDialog,
       ),
     );
   }
@@ -103,28 +97,44 @@ class _Calender01PageState extends State<Calender01Page> {
         context: context,
         builder: (context) => AlertDialog(
           title: Text("予定追加"),
-          content: TextField(
-            controller: _eventController,
+          content: Container(
+            height: 180.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: _eventController,
+                ),
+                TextField(
+                  controller: _descriptionController,
+                ),
+              ],
+            ),
           ),
           actions: <Widget>[
-            FlatButton(
-              child: Text("保存",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
-              onPressed: () {
-                if (_eventController.text.isEmpty) return;
-                setState(() {
-                  if (_events[_controller.selectedDay] != null) {
-                    _events[_controller.selectedDay]
-                        .add(_eventController.text);
-                  } else {
-                    _events[_controller.selectedDay] = [
-                      _eventController.text
-                    ];
-                  }
-                  // prefs.setString("events", json.encode(encodeMap(_events)));
-                  _eventController.clear();
-                  Navigator.pop(context);
-                });
-              },
+            Row(
+              children: [
+                FlatButton(
+                  child: Text("キャンセル",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                FlatButton(
+                  child: Text("保存",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
+                  onPressed: () {
+                    if (_eventController.text.isEmpty) return;
+                    setState(() {
+                      if (_events[_controller.selectedDay] != null) {
+                        _events[_controller.selectedDay].add(_eventController.text);
+                      } else {
+                        _events[_controller.selectedDay] = [_eventController.text];
+                      }
+                      // prefs.setString("events", json.encode(encodeMap(_events)));
+                      _eventController.clear();
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+              ],
             )
           ],
         )

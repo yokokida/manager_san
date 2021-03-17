@@ -87,11 +87,10 @@ class _AddEventPageState extends State<AddEventPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: TextFormField(
                   controller: _title,
-                  validator: (value) =>
-                  (value.isEmpty) ? "Please Enter title" : null,
+                  validator: (value) => (value.isEmpty) ? "Please Enter title" : null,
                   style: style,
                   decoration: InputDecoration(
-                      labelText: "Title",
+                      labelText: "予定",
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
@@ -107,7 +106,7 @@ class _AddEventPageState extends State<AddEventPage> {
                   (value.isEmpty) ? "Please Enter description" : null,
                   style: style,
                   decoration: InputDecoration(
-                      labelText: "description",
+                      labelText: "詳細",
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
                 ),
               ),
