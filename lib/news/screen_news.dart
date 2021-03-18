@@ -53,7 +53,6 @@ class AddEventPage extends StatefulWidget {
 }
 
 class _AddEventPageState extends State<AddEventPage> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   TextEditingController _title;
   TextEditingController _description;
   DateTime _eventDate;
@@ -88,7 +87,6 @@ class _AddEventPageState extends State<AddEventPage> {
                 child: TextFormField(
                   controller: _title,
                   validator: (value) => (value.isEmpty) ? "Please Enter title" : null,
-                  style: style,
                   decoration: InputDecoration(
                       labelText: "予定",
                       filled: true,
@@ -104,7 +102,6 @@ class _AddEventPageState extends State<AddEventPage> {
                   maxLines: 5,
                   validator: (value) =>
                   (value.isEmpty) ? "Please Enter description" : null,
-                  style: style,
                   decoration: InputDecoration(
                       labelText: "詳細",
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
@@ -124,10 +121,8 @@ class _AddEventPageState extends State<AddEventPage> {
                 },
               ),
 
-              SizedBox(height: 10.0),
-              processing
-                  ? Center(child: CircularProgressIndicator())
-                  : Padding(
+              SizedBox(height: 20.0),
+              processing ? Center(child: CircularProgressIndicator()) : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Material(
                   elevation: 5.0,
@@ -160,9 +155,9 @@ class _AddEventPageState extends State<AddEventPage> {
                     },
                     child: Text(
                       "Save",
-                      style: style.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                      )
                     ),
                   ),
                 ),

@@ -4,14 +4,24 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:manager_san/login.dart';
 
-class MyPage extends StatelessWidget {
+class MyPage extends StatefulWidget {
+  @override
+  _MyPageState createState() => _MyPageState();
+}
+
+class _MyPageState extends State<MyPage> {
   final String profName = "name";
+
   final String profCompany = "company";
+
   final String profSchool = "school";
+
   final String profDatetime = "datetime";
 
   TextEditingController _newNameCont = TextEditingController();
+
   TextEditingController _newCompanyCont = TextEditingController();
+
   TextEditingController _newSchoolCont = TextEditingController();
 
   final auth = FirebaseAuth.instance;
@@ -94,6 +104,7 @@ class MyPage extends StatelessWidget {
       profCompany: company,
     });
   }
+
   void createPlayer(String name, String school) {
     FirebaseFirestore.instance.collection('players').add({
       profName: name,

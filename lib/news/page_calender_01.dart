@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manager_san/news/add_news.dart';
 import 'package:manager_san/news/screen_news.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -84,10 +85,10 @@ class _Calender01PageState extends State<Calender01Page> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        // onPressed: () => Navigator.of(context).push(
-        //     MaterialPageRoute(builder: (context) => AddEventPage())
-        // ),
-        onPressed: _showAddDialog,
+        onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => AddEventPage02())
+        ),
+        // onPressed: _showAddDialog,
       ),
     );
   }
