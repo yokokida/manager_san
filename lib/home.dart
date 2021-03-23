@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:manager_san/news/page_calender_01.dart';
-import 'package:manager_san/news/page_calender_02.dart';
 import 'package:manager_san/player/page_player.dart';
 
 import 'album/page_album.dart';
+import 'calender/page_calender_syncfusion.dart';
+import 'calender/page_calender_table.dart';
 import 'coach/page_coach.dart';
 import 'mypage/page_mypage.dart';
 
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _pages = [
-      Calender01Page(),
+      SyncCalender(),
       Coaches(),
       Players(),
       Album(),

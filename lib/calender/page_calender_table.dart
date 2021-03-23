@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manager_san/news/add_news.dart';
-import 'package:manager_san/news/screen_news.dart';
+import 'package:manager_san/calender/screen_add.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 
@@ -86,68 +85,21 @@ class _Calender01PageState extends State<Calender01Page> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => AddEventPage02())
+            MaterialPageRoute(builder: (context) => AddEventPage02(
+              // chosenDay: _onDaySelected,
+            ))
         ),
         // onPressed: _showAddDialog,
       ),
     );
   }
 
-  _showAddDialog() async {
-    await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text("予定追加"),
-          content: Container(
-            height: 180.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
-                  controller: _eventController,
-                ),
-                TextField(
-                  controller: _descriptionController,
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            Row(
-              children: [
-                FlatButton(
-                  child: Text("キャンセル",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                FlatButton(
-                  child: Text("保存",style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold)),
-                  onPressed: () {
-                    if (_eventController.text.isEmpty) return;
-                    setState(() {
-                      if (_events[_controller.selectedDay] != null) {
-                        _events[_controller.selectedDay].add(_eventController.text);
-                      } else {
-                        _events[_controller.selectedDay] = [_eventController.text];
-                      }
-                      // prefs.setString("events", json.encode(encodeMap(_events)));
-                      _eventController.clear();
-                      Navigator.pop(context);
-                    });
-                  },
-                ),
-              ],
-            )
-          ],
-        )
-    );
-  }
-
-
-  void _onDaySelected(DateTime day, List events, List holidays) {
-    print('CALLBACK: _onDaySelected');
+  _onDaySelected(DateTime day, List events, List holidays) {
+    print(day);
     setState(() {
       _selectedEvents = events;
     });
+    return day;
   }
 
   void _onVisibleDaysChanged(DateTime first, DateTime last, CalendarFormat format) {

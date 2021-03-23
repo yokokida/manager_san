@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 
 class AddEventPage02 extends StatefulWidget {
+  // final String chosenDay;
+
   const AddEventPage02({Key key}) : super(key: key);
 
   @override
@@ -12,6 +14,7 @@ class AddEventPage02 extends StatefulWidget {
 class _AddEventPage02State extends State<AddEventPage02> {
   final String eventTtl = "title";
   final String eventDescription = "description";
+  final String chosenDay = 'date';
 
   TextEditingController _eventTtlCont = TextEditingController();
   TextEditingController _eventDescriptionCont = TextEditingController();
@@ -52,6 +55,9 @@ class _AddEventPage02State extends State<AddEventPage02> {
                 ),
               ),
               SizedBox(height: 20.0),
+              Container(
+                child: Text(chosenDay),
+              ),
               RaisedButton(
                 child: Text(
                     'Save',
