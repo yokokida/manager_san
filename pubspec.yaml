@@ -70,9 +70,12 @@ dependencies:
   syncfusion_flutter_maps: ^18.4.30-beta
   syncfusion_flutter_signaturepad: ^18.4.30-beta
   syncfusion_flutter_pdfviewer: ^18.4.30-beta
+  syncfusion_localizations: ^18.1.36
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the
